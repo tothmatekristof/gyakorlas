@@ -1,0 +1,52 @@
+1;
+int vlan 1
+ip address 10.0.0.1 255.0.0.0
+no shut
+ 
+username admin privilege 3 secret Kacsa!
+ 
+line telnet
+privilege level 3
+2;
+vlan 10 name Blue
+vlan 20 name Red
+ 
+int range gig 5-10
+switchport mode access
+switchport access vlan 10
+ 
+ 
+int range gig 15-20
+switchport mode access
+switchport access vlan 20
+ 
+ 
+ 
+3
+OSPF -KÉT ROUTER
+ 
+int serial 0/1/0
+router ospf 100
+log-adjacency-changes
+network 195.220.123.0 0.0.0.255 area 42
+ 
+ 
+4; ACL
+ 
+access-list 101 permit tcp 192.168.100.0 0.0.0.255  192.168.200.100 0.0.0.255 eq 23
+gigabites portra
+ip access-group 101 in 
+ 
+ 
+5;
+ip nat inside source static 192.168.10.20 88.52.10.25
+int gi1
+ip nazt inside
+int se0/1/0
+ip nat outside
+masik router: 
+ip route 88.52.10.0 255.255.255.0 200.10.10.1
+6
+encapsulation ppp
+ppp authentication pap
+ppp authentication password src12345
